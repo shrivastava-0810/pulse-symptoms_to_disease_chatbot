@@ -26,10 +26,8 @@ def model():
     classifier.add(Dropout(0.2))
     
     classifier.add(Dense(units = 128, kernel_initializer = 'uniform', activation = 'relu', input_dim = 132))
-    # classifier.add(Dropout(0.1))
     
     classifier.add(Dense(units = 128, kernel_initializer = 'uniform', activation = 'relu', input_dim = 132))
-    # classifier.add(Dropout(0.1))
     
     classifier.add(Dense(units = 41, kernel_initializer = 'uniform', activation = 'softmax'))
     
@@ -38,36 +36,6 @@ def model():
     classifier.fit(X, y, batch_size = 32, epochs = 60)
     
     classifier.save('D:/ML_projects/symptoms_classifier')
-
-# y_pred = classifier.predict(X[0].reshape(1,-1))
-
-# y_pred = (y_pred > 0.5)
-
-#Naive bayes 
-# from sklearn.naive_bayes import GaussianNB
-# classifier = GaussianNB()
-# classifier.fit(X, y)
-
-#Logistic Regression
-# from sklearn.linear_model import LogisticRegression
-# classifier = LogisticRegression(random_state = 0)
-# classifier.fit(X, y)
-
-#Random Forest
-# from sklearn.ensemble import RandomForestClassifier
-# classifier = RandomForestClassifier(n_estimators = 50, criterion = "entropy", 
-#                                     random_state = 0)
-# classifier.fit(X, y)
-
-# y_pred = classifier.predict(X_test)
-# y_pred = label_encoder.inverse_transform(y_pred)
-
-# #SVM
-# from sklearn.svm import SVC
-# classifier = SVC(kernel = 'rbf', random_state = 0, probability = True)
-# classifier.fit(X, y)
-
-# y_pred = classifier.predict_proba([X[0]])
 
 def calc_prob(symptoms):
     X_test = np.zeros(X.shape[1])

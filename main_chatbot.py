@@ -66,6 +66,6 @@ for i in range(len(predicted_diseases)):
     predicted_data[predicted_diseases[i]] = data
 
 print('\nDiseases you may be suffering from: ')
-print([(d, p) for d, p in zip(predicted_diseases, probabilities)])
+print(predicted_data)
 print('\nSymptoms provided:')
 print(main_symptoms_given)
