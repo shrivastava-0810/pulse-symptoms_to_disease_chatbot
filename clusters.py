@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-dataset = pd.read_csv('D:/ML_projects/Training.csv')
+dataset = pd.read_csv('D:/ML_projects/Train_unique.csv')
 X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, -1].values
 
@@ -43,4 +43,3 @@ def other_possible_symptoms(input_sym):
         else:
             lst = lst & set(similar_symptoms)
     return(list(lst))
-

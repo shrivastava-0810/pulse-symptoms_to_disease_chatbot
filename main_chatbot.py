@@ -1,4 +1,14 @@
 import numpy as np
+import pandas as pd
+from collections import OrderedDict as od
+
+description = pd.read_csv('D:/ML_projects/symptom_description.csv')
+precaution = pd.read_csv('D:/ML_projects/symptom_precaution.csv')
+
+diseases = description.iloc[:, 0].values
+desc = description.iloc[:, 1:].values
+
+prec = precaution.iloc[:, 1:].values
 
 from clusters import other_possible_symptoms
 from classification_algo import calc_prob
@@ -12,13 +22,14 @@ possible_symptoms = other_possible_symptoms(symptoms_input)
 
 while possible_symptoms:
     symptoms_input_total = []
-    while len(possible_symptoms)>10:
+    while len(possible_symptoms)>20:
         i = 5
         print('\nSelect the symptoms that you experiencing:')
         print(possible_symptoms[:i])
-        possible_symptoms = possible_symptoms[i:]
         symptoms_input = list(input().split())
-        symptoms_input_total.extend(symptoms_input)
+        if symptoms_input[0] in possible_symptoms[:i]:
+            symptoms_input_total.extend(symptoms_input)
+        possible_symptoms = possible_symptoms[i:]
     main_symptoms_given.extend(symptoms_input_total)
     possible_symptoms = list(set(possible_symptoms) & set(other_possible_symptoms(symptoms_input_total)))
         
@@ -31,6 +42,29 @@ while possible_symptoms:
             possible_symptoms.pop(0)
 
 predicted_diseases, probabilities = calc_prob(main_symptoms_given)
+
+chances = list(probabilities)
+
+predicted_data = od()
+
+for i in range(len(probabilities)):
+    if probabilities[i] >= 0.75:
+        chances[i] = 'Very high chances'
+    elif 0.5 <= probabilities[i] < 0.75:
+        chances[i] = 'High chances'
+    elif 0.25 <= probabilities[i] < 0.5:
+        chances[i] = 'Moderate chances'
+    else:
+        chances[i] = 'Low chances'
+
+for i in range(len(predicted_diseases)):
+    data = []
+    index = list(diseases).index(predicted_diseases[i])
+    data.append(chances[i])
+    data.append(desc[index][0])
+    data.append(list(prec[index]))
+    predicted_data[predicted_diseases[i]] = data
+
 print('\nDiseases you may be suffering from: ')
 print([(d, p) for d, p in zip(predicted_diseases, probabilities)])
 print('\nSymptoms provided:')
