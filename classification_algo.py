@@ -28,6 +28,26 @@ classifier.fit(X, y, batch_size = 64, epochs = 5)
 
 classifier.save('D:/ML_projects/symptoms_classifier')
 
+# y_pred = (y_pred > 0.5)
+
+#Naive bayes 
+# from sklearn.naive_bayes import GaussianNB
+# classifier = GaussianNB()
+# classifier.fit(X, y)
+
+#Logistic Regression
+# from sklearn.linear_model import LogisticRegression
+# classifier = LogisticRegression(random_state = 0)
+# classifier.fit(X, y)
+
+#Random Forest
+# from sklearn.ensemble import RandomForestClassifier
+# classifier = RandomForestClassifier(n_estimators = 50, criterion = "entropy", 
+#                                     random_state = 0)
+# classifier.fit(X, y)
+
+# y_pred = classifier.predict(X_test)
+# y_pred = label_encoder.inverse_transform(y_pred)
 
 def calc_prob(symptoms):
     X_test = np.zeros(X.shape[1])
