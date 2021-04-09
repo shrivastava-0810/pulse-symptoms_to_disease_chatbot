@@ -22,7 +22,8 @@ possible_symptoms = other_possible_symptoms(symptoms_input)
 
 while possible_symptoms:
     symptoms_input_total = []
-    while len(possible_symptoms)>20:
+    j = 0
+    while len(possible_symptoms)>10:
         i = 5
         print('\nSelect the symptoms that you experiencing:')
         print(possible_symptoms[:i])
@@ -30,8 +31,10 @@ while possible_symptoms:
         if symptoms_input[0] in possible_symptoms[:i]:
             symptoms_input_total.extend(symptoms_input)
         possible_symptoms = possible_symptoms[i:]
+        j+=1
     main_symptoms_given.extend(symptoms_input_total)
-    possible_symptoms = list(set(possible_symptoms) & set(other_possible_symptoms(symptoms_input_total)))
+    if j>=3:
+        possible_symptoms = list(set(possible_symptoms) & set(other_possible_symptoms(symptoms_input_total)))
         
     if possible_symptoms:
         print('\nAre suffering from ' + possible_symptoms[0])
@@ -59,7 +62,7 @@ for i in range(len(probabilities)):
 
 for i in range(len(predicted_diseases)):
     data = []
-    index = list(diseases).index(predicted_diseases[i])
+    index = list(diseases).index(predicted_diseases[i].strip())
     data.append(chances[i])
     data.append(desc[index][0])
     data.append(list(prec[index]))
