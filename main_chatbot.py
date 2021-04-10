@@ -23,7 +23,7 @@ possible_symptoms = other_possible_symptoms(symptoms_input)
 while possible_symptoms:
     symptoms_input_total = []
     j = 0
-    while len(possible_symptoms)>10:
+    while len(possible_symptoms)>20:
         i = 5
         print('\nSelect the symptoms that you experiencing:')
         print(possible_symptoms[:i])
