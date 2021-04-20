@@ -22,12 +22,12 @@ def model():
     classifier.add(Dense(units = 128, kernel_initializer = 'uniform', activation = 'relu', input_dim = 132))
     classifier.add(Dropout(0.2))
     
-    classifier.add(Dense(units = 128, kernel_initializer = 'uniform', activation = 'relu')
+    classifier.add(Dense(units = 128, kernel_initializer = 'uniform', activation = 'relu'))
     classifier.add(Dropout(0.2))
     
-    classifier.add(Dense(units = 128, kernel_initializer = 'uniform', activation = 'relu')
+    classifier.add(Dense(units = 128, kernel_initializer = 'uniform', activation = 'relu'))
     
-    classifier.add(Dense(units = 128, kernel_initializer = 'uniform', activation = 'relu')
+    classifier.add(Dense(units = 128, kernel_initializer = 'uniform', activation = 'relu'))
     
     classifier.add(Dense(units = 41, kernel_initializer = 'uniform', activation = 'softmax'))
     
